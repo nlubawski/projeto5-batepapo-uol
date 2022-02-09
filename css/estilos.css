@@ -12,18 +12,58 @@ header{
     top: 0;
     left: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    display: none;
 }
 
 header ion-icon{
     font-size: 44px;
+    margin-top: 18px;
+    margin-right: 22px;
+    margin-bottom: 17px;
+}
+
+header img {
+    width: 75px;
+    height: 53px;
+    margin-top: 16px;
+    margin-left: 22px;
+    margin-bottom: 11px;
 }
 
 main{
     height: calc(100vh - 160px);  
     background-color: aquamarine;
     margin: 80px 0;
+    display: none;
+}
+
+.mensagem{
+
+}
+
+.mensagem__publica{
+    width: 375px;
+    height: 40px;
+    background-color: #FFFFFF ;
+}
+
+.mensagem__privada{
+    width: 375px;
+    height: 40px;
+    background-color: #DCDCDC;
+}
+
+aside{
+    width: 259px;
+    background-color: #FFFFFF ;
+}
+
+.contatos__todos, .contatos__individual{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 footer{
@@ -35,12 +75,23 @@ footer{
     bottom: 0;
     left: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    display: none;
+}
+
+footer input{
+    margin-left: 17px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 footer ion-icon{
     font-size: 26px;
+    margin-bottom: 27px;
+    margin-right: 22px;
+    margin-top: 27px;
 }
+
 
 
