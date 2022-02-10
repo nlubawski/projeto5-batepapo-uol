@@ -49,8 +49,17 @@ function cadastrarUsuario(nome){
         name: nome
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants',pessoa) 
+    //promessa.then(manterConexao)
+
+    setInterval(manterConexao, 5000)
 }
 
+function manterConexao(){
+    const pessoa = {
+        name: nome
+    }
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', pessoa)
+}
 
 // function rolagem(){
 //     const msg = document.querySelectorAll('.mensagem__publica')
