@@ -1,3 +1,5 @@
+const nome = prompt('Qual seu nome? ')
+
 function obterMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
     promessa.then(exibe)
@@ -33,4 +35,4 @@ function exibe(resposta){
     });
 }
 
-obterMensagens()
+//setInterval(obterMensagens, 3000)
