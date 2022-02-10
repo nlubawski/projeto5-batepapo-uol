@@ -1,4 +1,5 @@
 const nome = prompt('Qual seu nome? ')
+let mensagens = null
 
 function obterMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
@@ -6,10 +7,16 @@ function obterMensagens(){
 }
 
 function exibe(resposta){
-    console.log(resposta.data)
-    resposta.data.forEach(element => { 
+    mensagens = resposta.data
+    renderizaMensagens(mensagens)
 
-        const textoMain = document.querySelector('.mensagem')
+}
+
+function renderizaMensagens(mensagens){
+    const textoMain = document.querySelector('.mensagem')
+    textoMain.innerHTML = ''
+
+    mensagens.forEach(element => { 
 
         if (element.type === 'message'){
 
@@ -32,7 +39,7 @@ function exibe(resposta){
             </div>
             `
         }        
-    });
+    })
 }
 
-//setInterval(obterMensagens, 3000)
+setInterval(obterMensagens, 3000)
