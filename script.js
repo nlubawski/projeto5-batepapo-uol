@@ -27,7 +27,7 @@ function renderizaMensagens(mensagens){
             `
             //rolagemAutomatica(rolagem) 
             
-        } else if (element.to === nome){ //puxar so as msg direcionadas pra mim
+        } else if (element.type === 'private_message'){ //puxar so as msg direcionadas pra mim
 
             textoMain.innerHTML += `
             <div class="mensagem__privada">
@@ -61,7 +61,11 @@ function exibirResposta(resposta){
 }
 
 function erroAoCadastrar(erro){
-    console.log(erro.response)
+    if (erro.response.status === 400){
+        alert('esse nome já está em uso, escolha outro...')
+        const nome = prompt('Digite um nome ... ')
+        cadastrarUsuario(nome)
+    }
 }
 
 function manterConexao(){
@@ -78,7 +82,7 @@ function enviarMensagem(){
         from: nome,
 	    to: "Todos",
 	    text: texto.value,
-	    type: "message"
+	    type: 'message'          //"private_message"
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
     promessa.then(exibirResposta)
