@@ -8,6 +8,7 @@ function obterMensagens(){
 
 function exibe(resposta){
     mensagens = resposta.data
+    console.log(mensagens)
     renderizaMensagens(mensagens)
 }
 
@@ -26,7 +27,7 @@ function renderizaMensagens(mensagens){
             `
             //rolagemAutomatica(rolagem) 
             
-        } else if (element.type === 'private_message'){
+        } else if (element.to === nome){ //puxar so as msg direcionadas pra mim
 
             textoMain.innerHTML += `
             <div class="mensagem__privada">
@@ -49,9 +50,18 @@ function cadastrarUsuario(nome){
         name: nome
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants',pessoa) 
-    //promessa.then(manterConexao)
+    promessa.then(exibirResposta)
+    promessa.catch(erroAoCadastrar)
 
     setInterval(manterConexao, 5000)
+}
+
+function exibirResposta(resposta){
+    console.log(resposta)
+}
+
+function erroAoCadastrar(erro){
+    console.log(erro.response)
 }
 
 function manterConexao(){
@@ -61,7 +71,22 @@ function manterConexao(){
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', pessoa)
 }
 
-// function rolagem(){
+function enviarMensagem(){
+    const texto = document.querySelector('footer input')
+
+    const mensagem = {
+        from: nome,
+	    to: "Todos",
+	    text: texto.value,
+	    type: "message"
+    }
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
+    promessa.then(exibirResposta)
+}
+
+
+
+//function rolagem(){
 //     const msg = document.querySelectorAll('.mensagem__publica')
 //     return msg[msg.length -1]
 
@@ -72,7 +97,6 @@ function manterConexao(){
 // elementoQueQueroQueApareca.scrollIntoView();
     
 // }
-
 
 cadastrarUsuario(nome)
 setInterval(obterMensagens, 3000)
