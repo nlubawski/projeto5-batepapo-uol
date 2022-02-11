@@ -10,7 +10,11 @@
     flex-direction: column;   
     background-color: #E5E5E5; 
     height: 100vh;
-    display: none;
+    width: 100vw;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
 }
 
 .entrada img{

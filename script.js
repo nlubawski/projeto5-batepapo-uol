@@ -1,4 +1,4 @@
-const nome = prompt('Qual seu nome? ')
+let nome //= prompt('Qual seu nome? ')
 let mensagens = null
 
 function obterMensagens(){
@@ -9,7 +9,7 @@ function obterMensagens(){
 
 function exibe(resposta){
     mensagens = resposta.data
-    console.log(mensagens)
+    //console.log(mensagens)
     renderizaMensagens(mensagens)
 }
 
@@ -25,9 +25,7 @@ function renderizaMensagens(mensagens){
             <div class="mensagem__publica" data-identifier="message">
                 <span>${element.time}</span><span>${element.from}  ${element.text}</span>
             </div>           
-            `
-            //rolagemAutomatica(rolagem) 
-            
+            `            
         } else if (element.type === 'private_message'){ //puxar so as msg direcionadas pra mim
 
             textoMain.innerHTML += `
@@ -35,7 +33,6 @@ function renderizaMensagens(mensagens){
                 <span>${element.time}</span><span>${element.from}  ${element.text}</span>
             </div>
             `
-            //rolagemAutomatica(element, 'private__mensagem')
         } else if (element.type === 'status') {
             textoMain.innerHTML += `
             <div class="mensagem__status" data-identifier="message">
@@ -63,14 +60,17 @@ function cadastrarUsuario(nome){
 }
 
 function exibirResposta(resposta){
-    console.log(resposta)
+    //console.log(resposta)
+    const entrada = document.querySelector('.entrada')
+    entrada.classList.add('esconder')
 }
 
 function erroAoCadastrar(erro){
+    //console.log(erro.response)
     if (erro.response.status === 400){
         alert('esse nome já está em uso, escolha outro...')
-        const nome = prompt('Digite um nome ... ')
-        cadastrarUsuario(nome)
+        //const nome = prompt('Digite um nome ... ')
+        //cadastrarUsuario(nome)
     }
 }
 
@@ -101,7 +101,14 @@ function erroAoEnviar(erro){
 
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {
-        enviarMensagem()
+        const tela  = document.querySelector('.entrada')
+        const telaEntrada = tela.classList.contains('entrada')
+        if (telaEntrada){
+            telaInicial()
+        }else{
+            enviarMensagem()
+        }
+            
     }
 })
 
@@ -112,7 +119,9 @@ function buscarParticipantes(){
 }
 
 function listarParticipantes(resposta){
-    renderizarParticipantes(resposta.data)
+    let participantes = resposta.data
+    //console.log(participantes)
+    renderizarParticipantes(participantes)
 }
 
 function erroAoBuscarParticipantes(){
@@ -130,11 +139,11 @@ function renderizarParticipantes(participantes){
             <div><ion-icon name="people-sharp"></ion-icon> <span>Todos</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
     `
-
-    participantes.forEach(participante => {
+    console.log('participantes ' ,participantes)
+    participantes.forEach(element => {
         textoAside.innerHTML += `
         <div class="contatos__individual">
-            <div><ion-icon name="person-circle"></ion-icon> <span>${participante.name}</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div><ion-icon name="person-circle"></ion-icon> <span>${element.name}</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
         `   
     })
@@ -164,19 +173,12 @@ function participantesAtivos(){
     fundo.classList.toggle('esconder')
 }
 
-//function rolagem(){
-//     const msg = document.querySelectorAll('.mensagem__publica')
-//     return msg[msg.length -1]
+function telaInicial(){
+    const texto = document.querySelector('.entrada input')
+    texto.classList.add('esconder')
+    nome = texto.value
+    cadastrarUsuario(nome)
+}
 
-// }
-
-// function rolagemAutomatica(rolagem){
-//     const elementoQueQueroQueApareca = rolagem.querySelector('.mensagem__publica');
-// elementoQueQueroQueApareca.scrollIntoView();
-    
-// }
-
-cadastrarUsuario(nome)
 setInterval(obterMensagens, 3000)
-setInterval(buscarParticipantes, 3000)
-setInterval(renderizarParticipantes, 10000)
+setInterval(buscarParticipantes, 10000)
