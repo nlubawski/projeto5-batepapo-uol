@@ -84,7 +84,11 @@ function enviarMensagem(){
     promessa.then(exibirResposta)
 }
 
-
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+        enviarMensagem()
+    }
+})
 
 //function rolagem(){
 //     const msg = document.querySelectorAll('.mensagem__publica')
