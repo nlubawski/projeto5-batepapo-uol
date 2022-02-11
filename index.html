@@ -24,7 +24,7 @@
     </div>
     <header>
         <img src="./img/logo.png" alt="Logo Uol">
-        <ion-icon name="people-sharp"></ion-icon>
+        <ion-icon name="people-sharp" onclick="participantesAtivos()"></ion-icon>
 
     </header>
     <main>
@@ -75,12 +75,12 @@
 
         </div>
     </aside>
+    <div class="fundo esconder" onclick="participantesAtivos()">
+
+    </div>
     <footer>
         <input type="text">
-        <ion-button >
-            <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
-        </ion-button>
-        
+        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()" data-identifier="send-message"></ion-icon>    
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

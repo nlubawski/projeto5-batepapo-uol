@@ -94,8 +94,13 @@ main{
 
 aside{
     width: 259px;
+    height: 100vh;
     background-color: #FFFFFF ;
     font-size: 16px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
 
 }
 
@@ -130,6 +135,16 @@ aside ion-icon{
     font-size: 25px;
 }
 
+.fundo{
+    width: calc(100vw - 259px);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+}
 footer{
     height: 80px;
     width: 100%;

@@ -22,7 +22,7 @@ function renderizaMensagens(mensagens){
         if (element.type === 'message'){
 
             textoMain.innerHTML += `
-            <div class="mensagem__publica">
+            <div class="mensagem__publica" data-identifier="message">
                 <span>${element.time}</span><span>${element.from}  ${element.text}</span>
             </div>           
             `
@@ -31,14 +31,14 @@ function renderizaMensagens(mensagens){
         } else if (element.type === 'private_message'){ //puxar so as msg direcionadas pra mim
 
             textoMain.innerHTML += `
-            <div class="mensagem__privada">
+            <div class="mensagem__privada" data-identifier="message">
                 <span>${element.time}</span><span>${element.from}  ${element.text}</span>
             </div>
             `
             //rolagemAutomatica(element, 'private__mensagem')
         } else if (element.type === 'status') {
             textoMain.innerHTML += `
-            <div class="mensagem__status">
+            <div class="mensagem__status" data-identifier="message">
                 <span>${element.time}</span><span>${element.from}  ${element.text}</span>
             </div>
             `
@@ -116,6 +116,15 @@ function listarParticipantes(resposta){
 
 function erroAoBuscarParticipantes(){
     alert('erro ao buscar participantes...')
+}
+
+
+function participantesAtivos(){
+    const participantes = document.querySelector('aside')
+    participantes.classList.toggle('esconder')
+
+    const fundo = document.querySelector('.fundo')
+    fundo.classList.toggle('esconder')
 }
 
 //function rolagem(){
