@@ -90,12 +90,12 @@ function enviarMensagem(){
 	    type: 'message'          //"private_message"
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
-    promessa.then(exibirResposta)
+    promessa.then(obterMensagens)
     promessa.catch(erroAoEnviar)
 }
 
 function erroAoEnviar(erro){
-    alert('erro ao enviar mensagem, tente novamente')
+    window.location.reload()
 }
 
 document.addEventListener("keypress", function(e) {
