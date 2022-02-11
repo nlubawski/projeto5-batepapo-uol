@@ -138,15 +138,15 @@ function renderizarParticipantes(participantes){
         <p>Escolha um contato para enviar uma mensagem:</p>
     </div>
     <div class="contatos">
-        <div class="contatos__todos">
-            <div><ion-icon name="people-sharp"></ion-icon> <span>Todos</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="contatos__todos" onclick="selecionarParticipante(this)">
+            <div><ion-icon name="people-sharp"></ion-icon> <span>Todos</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
     `
     console.log('participantes ' ,participantes)
     participantes.forEach(element => {
         textoAside.innerHTML += `
-        <div class="contatos__individual">
-            <div><ion-icon name="person-circle"></ion-icon> <span>${element.name}</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="contatos__individual" onclick="selecionarParticipante(this)">
+            <div><ion-icon name="person-circle"></ion-icon> <span>${element.name}</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
         `   
     })
@@ -181,6 +181,22 @@ function telaInicial(){
     texto.classList.add('esconder')
     nome = texto.value
     cadastrarUsuario(nome)
+}
+
+function selecionarParticipante(participante){
+    const desmarcar = document.querySelectorAll('.selecionado')
+    if (desmarcar !== null){
+        desmarcar.forEach(element => {
+            element.classList.add('esconder') 
+        });
+        
+    }
+    
+    const selecionar = participante.querySelector('.esconder')
+    if (selecionar !== null){
+        selecionar.classList.remove('esconder')
+    }
+    
 }
 
 
