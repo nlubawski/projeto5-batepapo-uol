@@ -56,13 +56,16 @@ function cadastrarUsuario(nome){
     promessa.then(exibirResposta)
     promessa.catch(erroAoCadastrar)
 
-    setInterval(manterConexao, 5000)
+    
 }
 
 function exibirResposta(resposta){
-    //console.log(resposta)
     const entrada = document.querySelector('.entrada')
     entrada.classList.add('esconder')
+
+    setInterval(manterConexao, 5000)
+    setInterval(buscarParticipantes, 10000)
+    setInterval(obterMensagens, 3000)
 }
 
 function erroAoCadastrar(erro){
@@ -102,11 +105,11 @@ function erroAoEnviar(erro){
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {
         const tela  = document.querySelector('.entrada')
-        const telaEntrada = tela.classList.contains('entrada')
+        const telaEntrada = tela.classList.contains('esconder')
         if (telaEntrada){
-            telaInicial()
+            enviarMensagem() 
         }else{
-            enviarMensagem()
+            telaInicial()
         }
             
     }
@@ -180,5 +183,5 @@ function telaInicial(){
     cadastrarUsuario(nome)
 }
 
-setInterval(obterMensagens, 3000)
-setInterval(buscarParticipantes, 10000)
+
+
