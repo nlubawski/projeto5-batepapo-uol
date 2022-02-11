@@ -44,6 +44,7 @@ function renderizaMensagens(mensagens){
             `
         }           
     }) 
+    
 }
 
 function erroAoObterMensagens(erro){
@@ -111,11 +112,47 @@ function buscarParticipantes(){
 }
 
 function listarParticipantes(resposta){
-    console.log(resposta.data)
+    renderizarParticipantes(resposta.data)
 }
 
 function erroAoBuscarParticipantes(){
     alert('erro ao buscar participantes...')
+}
+
+function renderizarParticipantes(participantes){
+    const textoAside = document.querySelector('.container')
+    textoAside.innerHTML = `
+    <div class="topo">
+        <p>Escolha um contato para enviar uma mensagem:</p>
+    </div>
+    <div class="contatos">
+        <div class="contatos__todos">
+            <div><ion-icon name="people-sharp"></ion-icon> <span>Todos</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+        </div>
+    `
+
+    participantes.forEach(participante => {
+        textoAside.innerHTML += `
+        <div class="contatos__individual">
+            <div><ion-icon name="person-circle"></ion-icon> <span>${participante.name}</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+        </div>
+        `   
+    })
+
+    textoAside.innerHTML +=`
+        </div>
+        <div class="visibilidade">
+            <p>Escolha a visibilidade:</p>
+        </div>
+        <div class="status">
+            <div class="status__publico">
+                <div><ion-icon name="lock-open"></ion-icon> <span>Público</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+            </div>
+            <div class="status__privado">
+                <div><ion-icon name="lock-closed"></ion-icon> <span>Reservadamente</span></div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div> 
+            </div>
+        </div>    
+        `
 }
 
 
@@ -142,3 +179,4 @@ function participantesAtivos(){
 cadastrarUsuario(nome)
 setInterval(obterMensagens, 3000)
 setInterval(buscarParticipantes, 3000)
+setInterval(renderizarParticipantes, 10000)
