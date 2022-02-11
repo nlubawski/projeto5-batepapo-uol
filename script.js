@@ -90,6 +90,15 @@ document.addEventListener("keypress", function(e) {
     }
 })
 
+function buscarParticipantes(){
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
+    promessa.then(listarParticipantes)
+}
+
+function listarParticipantes(resposta){
+    console.log(resposta.data)
+}
+
 //function rolagem(){
 //     const msg = document.querySelectorAll('.mensagem__publica')
 //     return msg[msg.length -1]
@@ -104,3 +113,4 @@ document.addEventListener("keypress", function(e) {
 
 cadastrarUsuario(nome)
 setInterval(obterMensagens, 3000)
+setInterval(buscarParticipantes, 3000)
