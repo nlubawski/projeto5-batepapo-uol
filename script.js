@@ -1,5 +1,6 @@
 let nome //= prompt('Qual seu nome? ')
 let mensagens = null
+let destinatario 
 
 function obterMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
@@ -139,14 +140,14 @@ function renderizarParticipantes(participantes){
     </div>
     <div class="contatos">
         <div class="contatos__todos" onclick="selecionarParticipante(this)">
-            <div><ion-icon name="people-sharp"></ion-icon> <span>Todos</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div><ion-icon name="people-sharp"></ion-icon> <span class="nome">Todos</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
     `
     console.log('participantes ' ,participantes)
     participantes.forEach(element => {
         textoAside.innerHTML += `
         <div class="contatos__individual" onclick="selecionarParticipante(this)">
-            <div><ion-icon name="person-circle"></ion-icon> <span>${element.name}</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div><ion-icon name="person-circle"></ion-icon> <span class="nome">${element.name}</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
         `   
     })
@@ -195,9 +196,17 @@ function selecionarParticipante(participante){
     const selecionar = participante.querySelector('.esconder')
     if (selecionar !== null){
         selecionar.classList.remove('esconder')
+        const selecionado = participante.querySelector('.nome')
+        if (selecionado !== null){
+            destinatario = selecionado.innerText 
+            console.log("destinatario ", destinatario)  
+        }
+        
     }
     
 }
+
+
 
 
 
