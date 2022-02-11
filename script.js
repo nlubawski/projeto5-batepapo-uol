@@ -4,6 +4,7 @@ let mensagens = null
 function obterMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
     promessa.then(exibe)
+    promessa.catch(erroAoObterMensagens)
 }
 
 function exibe(resposta){
@@ -43,6 +44,10 @@ function renderizaMensagens(mensagens){
             `
         }           
     }) 
+}
+
+function erroAoObterMensagens(erro){
+    alert('erro ao carregar mensagens, recarregue a página ...')
 }
 
 function cadastrarUsuario(nome){
@@ -86,6 +91,11 @@ function enviarMensagem(){
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
     promessa.then(exibirResposta)
+    promessa.catch(erroAoEnviar)
+}
+
+function erroAoEnviar(erro){
+    alert('erro ao enviar mensagem, tente novamente')
 }
 
 document.addEventListener("keypress", function(e) {
@@ -97,10 +107,15 @@ document.addEventListener("keypress", function(e) {
 function buscarParticipantes(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
     promessa.then(listarParticipantes)
+    promessa.catch(erroAoBuscarParticipantes)
 }
 
 function listarParticipantes(resposta){
     console.log(resposta.data)
+}
+
+function erroAoBuscarParticipantes(){
+    alert('erro ao buscar participantes...')
 }
 
 //function rolagem(){
