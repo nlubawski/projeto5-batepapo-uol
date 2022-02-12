@@ -1,6 +1,6 @@
 let nome //= prompt('Qual seu nome? ')
 let mensagens = null
-let destinatario 
+let destinatario = 'Todos'
 
 function obterMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
@@ -24,20 +24,20 @@ function renderizaMensagens(mensagens){
 
             textoMain.innerHTML += `
             <div class="mensagem__publica" data-identifier="message">
-                <span>${element.time}</span><span>${element.from}  ${element.text}</span>
+                <span>${element.time}</span> <span class="nome">${element.from}<span> <span class="texto">para<span> <span class="nome">${element.to}:<span> <span class="texto"> ${element.text}</span>
             </div>           
             `            
         } else if (element.type === 'private_message'){ //puxar so as msg direcionadas pra mim
-
+            // else if (element.type === 'private_message' && (element.from === nome || element.to === nome))
             textoMain.innerHTML += `
             <div class="mensagem__privada" data-identifier="message">
-                <span>${element.time}</span><span>${element.from}  ${element.text}</span>
+                <span>${element.time}</span><span class="nome">${element.from}<span> <span class="texto"> reservadamente para </span> <span class="nome">${element.to}: <span class="texto"> ${element.text}</span>
             </div>
             `
         } else if (element.type === 'status') {
             textoMain.innerHTML += `
             <div class="mensagem__status" data-identifier="message">
-                <span>${element.time}</span><span>${element.from}  ${element.text}</span>
+                <span>${element.time}</span> <span class="nome">${element.from}<span>  <span class="texto"> ${element.text}</span>
             </div>
             `
         }           
@@ -90,9 +90,9 @@ function enviarMensagem(){
 
     const mensagem = {
         from: nome,
-	    to: "Todos",
+	    to: destinatario,
 	    text: texto.value,
-	    type: 'message'          //"private_message"
+	    type: destinatario === 'Todos'? 'message' : 'private_message'
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
     promessa.then(obterMensagens)
@@ -158,11 +158,11 @@ function renderizarParticipantes(participantes){
             <p>Escolha a visibilidade:</p>
         </div>
         <div class="status">
-            <div class="status__publico">
-                <div><ion-icon name="lock-open"></ion-icon> <span>Público</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div class="status__publico" onclick="selecionarVisibilidade(this)">
+                <div><ion-icon name="lock-open"></ion-icon> <span>Público</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
             </div>
-            <div class="status__privado">
-                <div><ion-icon name="lock-closed"></ion-icon> <span>Reservadamente</span></div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div> 
+            <div class="status__privado" onclick="selecionarVisibilidade(this)">
+                <div><ion-icon name="lock-closed"></ion-icon> <span>Reservadamente</span></div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div> 
             </div>
         </div>    
         `
@@ -199,10 +199,43 @@ function selecionarParticipante(participante){
         const selecionado = participante.querySelector('.nome')
         if (selecionado !== null){
             destinatario = selecionado.innerText 
-            console.log("destinatario ", destinatario)  
+            //console.log("destinatario ", destinatario)  
         }
         
     }
+    
+}
+
+function selecionarVisibilidade(item){
+    if (nome === 'Todos'){
+        const marcarPublico = document.querySelectorAll('.status__publico .selecionado')
+        if (marcarPublico.classList.contains('.esconder')){
+            marcarPublico.classList.remove('esconder')
+        }
+    }else{
+        const desmarcar = document.querySelectorAll('.status .selecionado')
+        if (desmarcar !== null){
+        desmarcar.forEach(element => {
+            element.classList.add('esconder') 
+        });
+        }
+
+        const selecionar = item.querySelector('.esconder')
+            if (selecionar !== null){
+                selecionar.classList.remove('esconder')
+                const selecionado = participante.querySelector('.nome')
+                if (selecionado !== null){
+                    destinatario = selecionado.innerText 
+                    //console.log("destinatario ", destinatario)  
+                }
+                
+            }
+
+    }
+    
+    
+    
+    
     
 }
 

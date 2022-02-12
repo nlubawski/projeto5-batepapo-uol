@@ -98,6 +98,18 @@ main{
     background-color: #DCDCDC;
 }
 
+.nome{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.texto{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+
+
 aside{
     width: 259px;
     height: 100vh;
