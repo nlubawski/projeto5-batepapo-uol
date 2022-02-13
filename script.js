@@ -27,8 +27,7 @@ function renderizaMensagens(mensagens){
                 <span>${element.time}</span> <span class="nome">${element.from}<span> <span class="texto">para<span> <span class="nome">${element.to}:<span> <span class="texto"> ${element.text}</span>
             </div>           
             `            
-        } else if (element.type === 'private_message'){ //puxar so as msg direcionadas pra mim
-            // else if (element.type === 'private_message' && (element.from === nome || element.to === nome))
+        } else if (element.type === 'private_message' && (element.from === nome || element.to === nome)){   
             textoMain.innerHTML += `
             <div class="mensagem__privada" data-identifier="message">
                 <span>${element.time}</span><span class="nome">${element.from}<span> <span class="texto"> reservadamente para </span> <span class="nome">${element.to}: <span class="texto"> ${element.text}</span>
@@ -42,7 +41,6 @@ function renderizaMensagens(mensagens){
             `
         }           
     }) 
-    
 }
 
 function erroAoObterMensagens(erro){
@@ -114,7 +112,6 @@ document.addEventListener("keypress", function(e) {
         }else{
             telaInicial()
         }
-            
     }
 })
 
@@ -170,7 +167,6 @@ function renderizarParticipantes(participantes){
         `
 }
 
-
 function participantesAtivos(){
     const participantes = document.querySelector('aside')
     participantes.classList.toggle('esconder')
@@ -192,7 +188,6 @@ function selecionarParticipante(participante){
         desmarcar.forEach(element => {
             element.classList.add('esconder') 
         });
-        
     }
     
     const selecionar = participante.querySelector('.esconder')
@@ -202,10 +197,8 @@ function selecionarParticipante(participante){
         if (selecionado !== null){
             destinatario = selecionado.innerText 
             //console.log("destinatario ", destinatario)  
-        }
-        
+        } 
     }
-    
 }
 
 function selecionarVisibilidade(item){
@@ -230,12 +223,8 @@ function selecionarVisibilidade(item){
                     destinatario = selecionado.innerText 
                     //console.log("destinatario ", destinatario)  
                 }
-                
             }
-
     }
-    
-    
 }
 
 function telaCarregando(){
