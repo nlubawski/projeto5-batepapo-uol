@@ -1,6 +1,7 @@
 let nome //= prompt('Qual seu nome? ')
 let mensagens = null
 let destinatario = 'Todos'
+let visibilidade = 'publicamente'
 
 function obterMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
@@ -56,10 +57,7 @@ function cadastrarUsuario(nome){
     setTimeout(() => {
         promessa.then(exibirResposta)
         promessa.catch(erroAoCadastrar)
-  
     }, 2000)
-  
-    
 }
 
 function exibirResposta(resposta){
@@ -89,10 +87,10 @@ function enviarMensagem(){
     const texto = document.querySelector('footer input')
 
     const mensagem = {
-        from: nome,
-	    to: destinatario,
-	    text: texto.value,
-	    type: destinatario === 'Todos'? 'message' : 'private_message'
+    from: nome,
+	to: destinatario,
+    text: texto.value,
+	type: destinatario === 'Todos'? 'message' : 'private_message'
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
     promessa.then(obterMensagens)
@@ -139,10 +137,9 @@ function renderizarParticipantes(participantes){
     </div>
     <div class="contatos">
         <div class="contatos__todos" onclick="selecionarParticipante(this)">
-            <div><ion-icon name="people-sharp"></ion-icon> <span class="nome">Todos</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div><ion-icon name="people-sharp"></ion-icon> <span class="nome">Todos</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
     `
-    console.log('participantes ' ,participantes)
     participantes.forEach(element => {
         textoAside.innerHTML += `
         <div class="contatos__individual" onclick="selecionarParticipante(this)">
@@ -158,10 +155,10 @@ function renderizarParticipantes(participantes){
         </div>
         <div class="status">
             <div class="status__publico" onclick="selecionarVisibilidade(this)">
-                <div><ion-icon name="lock-open"></ion-icon> <span>Público</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
+                <div><ion-icon name="lock-open"></ion-icon> <span class="status__visibilidade">Público</span> </div>  <div class="escolhido "><ion-icon name="checkmark-outline"></ion-icon></div>
             </div>
             <div class="status__privado" onclick="selecionarVisibilidade(this)">
-                <div><ion-icon name="lock-closed"></ion-icon> <span>Reservadamente</span></div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div> 
+                <div><ion-icon name="lock-closed"></ion-icon> <span class="status__visibilidade">Reservadamente</span></div>  <div class="escolhido esconder"><ion-icon name="checkmark-outline"></ion-icon></div> 
             </div>
         </div>    
         `
@@ -187,7 +184,7 @@ function selecionarParticipante(participante){
     if (desmarcar !== null){
         desmarcar.forEach(element => {
             element.classList.add('esconder') 
-        });
+        })
     }
     
     const selecionar = participante.querySelector('.esconder')
@@ -196,34 +193,26 @@ function selecionarParticipante(participante){
         const selecionado = participante.querySelector('.nome')
         if (selecionado !== null){
             destinatario = selecionado.innerText 
-            //console.log("destinatario ", destinatario)  
         } 
     }
 }
 
 function selecionarVisibilidade(item){
-    if (nome === 'Todos'){
-        const marcarPublico = document.querySelectorAll('.status__publico .selecionado')
-        if (marcarPublico.classList.contains('.esconder')){
-            marcarPublico.classList.remove('esconder')
-        }
-    }else{
-        const desmarcar = document.querySelectorAll('.status .selecionado')
-        if (desmarcar !== null){
+    const desmarcar = document.querySelectorAll('.escolhido')
+    if (desmarcar !== null){
         desmarcar.forEach(element => {
             element.classList.add('esconder') 
         });
-        }
-
-        const selecionar = item.querySelector('.esconder')
-            if (selecionar !== null){
-                selecionar.classList.remove('esconder')
-                const selecionado = participante.querySelector('.nome')
-                if (selecionado !== null){
-                    destinatario = selecionado.innerText 
-                    //console.log("destinatario ", destinatario)  
-                }
-            }
+    }
+    
+    const selecionar = item.querySelector('.esconder')
+    if (selecionar !== null){
+        selecionar.classList.remove('esconder')
+        const selecionado = item.querySelector('.status__visibilidade')
+        if (selecionado !== null){
+            visibilidade = selecionado.innerText 
+            console.log("visibilidade ", visibilidade)  
+        } 
     }
 }
 

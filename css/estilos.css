@@ -75,18 +75,14 @@ header img {
 
 main{
     height: calc(100vh - 160px);  
-    background-color: aquamarine;
+    background-color: #E5E5E5;
     margin: 80px 0;
-}
-
-.mensagem{
-
 }
 
 .mensagem__publica{
     width: 100%;
     height: 40px;
-    background-color: #FFFFFF ;
+    background-color: #FFFFFF;
 }
 
 .mensagem__privada{
@@ -180,10 +176,34 @@ footer{
     align-items: center;
 }
 
-footer input{
+footer .mensagem{
     margin-left: 17px;
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+.mensagem__input{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    /*font-style: italic;*/
+    font-size: 18px;
+    line-height: 25px;
+    line-height: 119%;
+    color: #000000;
+
+}
+
+input.mensagem__input:focus {
+    outline: 0;    
+}
+
+.mensagem__info{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #505050;
+    line-height: 25px;
+    margin-top: 1px;
 }
 
 footer ion-icon{

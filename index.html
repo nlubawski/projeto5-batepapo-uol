@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
 
     <title>Bate Papo Uol</title>
 </head>
@@ -37,9 +38,9 @@
 
     </div>
     <footer>
-        <div>
-            <input type="text" size="30" placeholder="Escreva aqui..." >
-            <div><span>Enviando para</span><span>Todos</span><span>(publicamente)</span></div>
+        <div class="mensagem">
+            <input type="text" placeholder="Escreva aqui..." class="mensagem__input" >
+            <div class="mensagem__info"><span>Enviando para </span><span class="contato">Todos </span><span class="visibilidade">(publicamente)</span></div>
         </div>       
         <ion-icon name="paper-plane-outline" onclick="enviarMensagem()" data-identifier="send-message"></ion-icon>    
     </footer>
