@@ -53,7 +53,7 @@ function cadastrarUsuario(nome){
     const pessoa = {
         name: nome
     }
-    telaCarregando()
+    
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants',pessoa) 
     setTimeout(() => {
         promessa.then(exibirResposta)
@@ -74,14 +74,10 @@ function exibirResposta(resposta){
 }
 
 function erroAoCadastrar(erro){
-    //console.log(erro.response)
-    if (erro.response.status === 400){
+    if (erro.response.status !== 200){
         alert('esse nome já está em uso, escolha outro...')
-        //const nome = prompt('Digite um nome ... ')
-        //cadastrarUsuario(nome)
         telaCarregando()
     }
-    
 }
 
 function manterConexao(){
@@ -185,8 +181,8 @@ function participantesAtivos(){
 
 function telaInicial(){
     const texto = document.querySelector('.entrada input')
-    texto.classList.add('esconder')
     nome = texto.value
+    telaCarregando()
     cadastrarUsuario(nome)
 }
 
@@ -247,11 +243,4 @@ function telaCarregando(){
     document.querySelector('.entrada .entrada__input').classList.toggle('esconder')
     document.querySelector('.entrada .entrada__button').classList.toggle('esconder')
     document.querySelector('.entrada .carregando').classList.toggle('esconder')
-    
-
 }
-
-
-
-
-
