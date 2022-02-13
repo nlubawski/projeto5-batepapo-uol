@@ -193,6 +193,7 @@ function selecionarParticipante(participante){
         const selecionado = participante.querySelector('.nome')
         if (selecionado !== null){
             destinatario = selecionado.innerText 
+            alteraTelaDeEnvio()
         } 
     }
 }
@@ -211,7 +212,7 @@ function selecionarVisibilidade(item){
         const selecionado = item.querySelector('.status__visibilidade')
         if (selecionado !== null){
             visibilidade = selecionado.innerText 
-            console.log("visibilidade ", visibilidade)  
+            alteraTelaDeEnvio()
         } 
     }
 }
@@ -221,4 +222,9 @@ function telaCarregando(){
     document.querySelector('.entrada .entrada__input').classList.toggle('esconder')
     document.querySelector('.entrada .entrada__button').classList.toggle('esconder')
     document.querySelector('.entrada .carregando').classList.toggle('esconder')
+}
+
+function alteraTelaDeEnvio(){
+    document.querySelector('footer .contato').innerHTML = `${destinatario}`
+    document.querySelector('footer .visibilidade').innerHTML = `(${visibilidade})`
 }
