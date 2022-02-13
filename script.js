@@ -90,7 +90,7 @@ function enviarMensagem(){
     from: nome,
 	to: destinatario,
     text: texto.value,
-	type: destinatario === 'Todos'? 'message' : 'private_message'
+	type: visibilidade === 'publicamente'? 'message' : 'private_message'
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
     promessa.then(obterMensagens)
