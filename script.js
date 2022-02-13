@@ -1,4 +1,4 @@
-let nome //= prompt('Qual seu nome? ')
+let nome = null
 let mensagens = null
 let destinatario = 'Todos'
 let visibilidade = 'publicamente'
@@ -11,7 +11,6 @@ function obterMensagens(){
 
 function exibe(resposta){
     mensagens = resposta.data
-    //console.log(mensagens)
     renderizaMensagens(mensagens)
 }
 
@@ -42,6 +41,7 @@ function renderizaMensagens(mensagens){
             `
         }           
     }) 
+    setTimeout(scroll, 1000)
 }
 
 function erroAoObterMensagens(erro){
@@ -121,7 +121,6 @@ function buscarParticipantes(){
 
 function listarParticipantes(resposta){
     let participantes = resposta.data
-    //console.log(participantes)
     renderizarParticipantes(participantes)
 }
 
@@ -227,4 +226,23 @@ function telaCarregando(){
 function alteraTelaDeEnvio(){
     document.querySelector('footer .contato').innerHTML = `${destinatario}`
     document.querySelector('footer .visibilidade').innerHTML = `(${visibilidade})`
+}
+
+function scroll(){
+    switch (mensagens[0].type){
+        case 'status':
+            const divStatus = document.querySelectorAll('.mensagem__status')
+            divStatus[divStatus.length - 1].scrollIntoView()
+            break
+
+        case 'private_message':
+            const divPrivada = document.querySelectorAll('.mensagem__privada')
+            divPrivada[divPrivada.length - 1].scrollIntoView()
+            break
+        
+            case 'message':
+            const divPublica = document.querySelectorAll('.mensagem__publica')
+            divPublica[divPublica.length - 1].scrollIntoView()
+            break
+    }
 }
