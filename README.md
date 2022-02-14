@@ -3,7 +3,7 @@
 Meu quinto projeto desenvolvido na Driven! Foi feito usando html, css e javascript puro. 
 Acesse no link abaixo pra conhecer mais (esse é um projeto pra versão mobile)
 
-https://nlubawski.github.io/projeto3-driveneats/
+https://nlubawski.github.io/projeto5-batepapo-uol/
 
 Tela Login             |  Tela Principal
 :-------------------------:|:-------------------------:
