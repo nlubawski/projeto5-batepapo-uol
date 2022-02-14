@@ -137,13 +137,13 @@ function renderizarParticipantes(participantes){
         <p>Escolha um contato para enviar uma mensagem:</p>
     </div>
     <div class="contatos">
-        <div class="contatos__todos" onclick="selecionarParticipante(this)">
+        <div class="contatos__todos" onclick="selecionarParticipante(this)" data-identifier="participant">
             <div><ion-icon name="people-sharp"></ion-icon> <span class="nome">Todos</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
     `
     participantes.forEach(element => {
         textoAside.innerHTML += `
-        <div class="contatos__individual" onclick="selecionarParticipante(this)">
+        <div class="contatos__individual" onclick="selecionarParticipante(this)" data-identifier="participant">
             <div><ion-icon name="person-circle"></ion-icon> <span class="nome">${element.name}</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
         `   
@@ -155,10 +155,10 @@ function renderizarParticipantes(participantes){
             <p>Escolha a visibilidade:</p>
         </div>
         <div class="status">
-            <div class="status__publico" onclick="selecionarVisibilidade(this)">
+            <div class="status__publico" onclick="selecionarVisibilidade(this)" data-identifier="visibility">
                 <div><ion-icon name="lock-open"></ion-icon> <span class="status__visibilidade">Público</span> </div>  <div class="escolhido esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
             </div>
-            <div class="status__privado" onclick="selecionarVisibilidade(this)">
+            <div class="status__privado" onclick="selecionarVisibilidade(this)" data-identifier="visibility">
                 <div><ion-icon name="lock-closed"></ion-icon> <span class="status__visibilidade">Reservadamente</span></div>  <div class="escolhido esconder"><ion-icon name="checkmark-outline"></ion-icon></div> 
             </div>
         </div>    
