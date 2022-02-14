@@ -138,7 +138,7 @@ function renderizarParticipantes(participantes){
     </div>
     <div class="contatos">
         <div class="contatos__todos" onclick="selecionarParticipante(this)">
-            <div><ion-icon name="people-sharp"></ion-icon> <span class="nome">Todos</span> </div>  <div class="selecionado"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div><ion-icon name="people-sharp"></ion-icon> <span class="nome">Todos</span> </div>  <div class="selecionado esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
     `
     participantes.forEach(element => {
@@ -156,7 +156,7 @@ function renderizarParticipantes(participantes){
         </div>
         <div class="status">
             <div class="status__publico" onclick="selecionarVisibilidade(this)">
-                <div><ion-icon name="lock-open"></ion-icon> <span class="status__visibilidade">Público</span> </div>  <div class="escolhido "><ion-icon name="checkmark-outline"></ion-icon></div>
+                <div><ion-icon name="lock-open"></ion-icon> <span class="status__visibilidade">Público</span> </div>  <div class="escolhido esconder"><ion-icon name="checkmark-outline"></ion-icon></div>
             </div>
             <div class="status__privado" onclick="selecionarVisibilidade(this)">
                 <div><ion-icon name="lock-closed"></ion-icon> <span class="status__visibilidade">Reservadamente</span></div>  <div class="escolhido esconder"><ion-icon name="checkmark-outline"></ion-icon></div> 
