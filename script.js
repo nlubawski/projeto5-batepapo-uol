@@ -19,9 +19,7 @@ function renderizaMensagens(mensagens){
     textoMain.innerHTML = ''
 
     mensagens.forEach(element => { 
-
         if (element.type === 'message'){
-
             textoMain.innerHTML += `
             <div class="mensagem__publica" data-identifier="message">
                 <span>${element.time}</span> <span class="nome">${element.from}<span> <span class="texto">para<span> <span class="nome">${element.to}:<span> <span class="texto"> ${element.text}</span>
@@ -45,7 +43,8 @@ function renderizaMensagens(mensagens){
 }
 
 function erroAoObterMensagens(erro){
-    alert('erro ao carregar mensagens, recarregue a página ...')
+    alert('erro ao carregar mensagens, a página será recarregada ...')
+    window.location.reload()
 }
 
 function cadastrarUsuario(nome){
@@ -92,6 +91,9 @@ function enviarMensagem(){
     text: texto.value,
 	type: visibilidade === 'publicamente'? 'message' : 'private_message'
     }
+
+    texto.value = ""
+
     const promessa = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', mensagem)
     promessa.then(obterMensagens)
     promessa.catch(erroAoEnviar)
@@ -166,7 +168,6 @@ function renderizarParticipantes(participantes){
 function participantesAtivos(){
     const participantes = document.querySelector('aside')
     participantes.classList.toggle('esconder')
-
     const fundo = document.querySelector('.fundo')
     fundo.classList.toggle('esconder')
 }

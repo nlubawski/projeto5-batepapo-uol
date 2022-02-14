@@ -89,25 +89,35 @@ header img {
 main{
     height: calc(100vh - 160px);  
     background-color: var(--color-background);
+}
+
+main .mensagem{
     margin: 80px 0;
+}
+
+.texto{
+    word-wrap: break-word;
 }
 
 .mensagem__publica{
     width: 100%;
-    height: 40px;
+    height: 100%;
     background-color: var(--color-mensagem-publica);
+    padding: 13px 0;
 }
 
 .mensagem__privada{
     width: 100%;
-    height: 40px;
+    height: 100%;
     background-color: var(--color-mensagem-privada);
+    padding: 13px 0;
 }
 
 .mensagem__status{
     width: 100%;
-    height: 40px;
+    height: 100%;
     background-color: var(--color-mensagem-status);
+    padding: 13px 0;
 }
 
 .nome{
@@ -118,9 +128,10 @@ main{
 .texto{
     font-family: var(--fonte);
     font-weight: 400;
+
+    /*word-wrap: break-word;*/
+
 }
-
-
 
 aside{
     width: 259px;
@@ -132,7 +143,6 @@ aside{
     top: 0;
     right: 0;
     overflow-y: auto;
-
 }
 
 aside .container{
@@ -174,8 +184,8 @@ aside ion-icon{
     z-index: 1;
     top: 0;
     left: 0;
-
 }
+
 footer{
     height: 80px;
     width: 100%;
@@ -203,7 +213,6 @@ footer .mensagem{
     line-height: 25px;
     line-height: 119%;
     color: var(--color-mensagem-input);
-
 }
 
 input.mensagem__input:focus {
@@ -229,6 +238,3 @@ footer ion-icon{
 .esconder{
     display: none;
 }
-
-
-
