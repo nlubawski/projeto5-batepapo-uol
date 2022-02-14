@@ -217,7 +217,6 @@ function selecionarVisibilidade(item){
 }
 
 function telaCarregando(){
-    
     document.querySelector('.entrada .entrada__input').classList.toggle('esconder')
     document.querySelector('.entrada .entrada__button').classList.toggle('esconder')
     document.querySelector('.entrada .carregando').classList.toggle('esconder')
